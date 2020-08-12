@@ -9,9 +9,8 @@ const getNotes=()=>{
 
 const addNote=(title, body)=>{
        const notes = loadNotes()
-       const duplicateNotes = notes.filter((note)=>{
-               return note.title === title
-       })
+       const duplicateNotes = notes.filter((note)=>note.title === title
+       )
 
        if(duplicateNotes.length === 0){
         notes.push({
@@ -29,10 +28,9 @@ const addNote=(title, body)=>{
 
 const removeNotes =(title)=>{
 
-    const notes = loadNotes()
-    const checkNotes = notes.filter(function(note){
-        return note.title !== title
-    })
+    const notes = loadNotes() 
+    const checkNotes = notes.filter((note)=>note.title !== title
+    )
 
     if(checkNotes.length === notes.length){
         console.log(chalk.red.inverse('Such note do not exists!'))
@@ -58,8 +56,19 @@ const loadNotes =()=>{
      
 }
 
+const listNotes = ()=>{
+        console.log(chalk.blue.bold.inverse('To Do List'))
+        const notes = loadNotes()
+        
+        notes.forEach((note)=>{
+            
+            console.log(chalk.green.bold(note.title + "- " + note.body))
+        })
+}
+
 module.exports = {
     getNotes: getNotes,
     addNote: addNote,
-    removeNotes:removeNotes
+    removeNotes:removeNotes,
+    listNotes: listNotes
 }
